@@ -37,7 +37,7 @@
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Todo List</h1>
       </ion-header-bar>
       <ion-content ng-controller="todoController">
         <ul class="list">
@@ -47,7 +47,8 @@
           <button class="button button-block button-positive" ng-click="addTodo(todo)">
             Add
           </button>
-          <li class="item item-checkbox" ng-repeat="todo in todos">
+          <!--must add track by $index, but why? -->
+          <li class="item item-checkbox" ng-repeat="todo in todos track by $index">
             <label class="checkbox">
               <input type="checkbox" ng-model="todo.done" ng-checked={{todo.done}}>
             </label>{{todo.title}}

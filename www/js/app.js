@@ -25,9 +25,6 @@ var app = angular.module('starter', ['ionic'])
 
 app.service('Todo', function(){
   var todos = [
-    {'title':'Clean backpack', 'done': false},
-    {'title':'Do laundary', 'done': false},
-    {'title':'Clean my room', 'done': false},
     {'title':'Borrow the book', 'done': false}
   ];
   //to retrieve the list
@@ -38,6 +35,19 @@ app.service('Todo', function(){
     //splice(index, howManyItemsToDelete,optional-addNewItem);
     //splice will return the new array
     todos.splice(0,0,todo);
-  }
-});
+    window.localStorage['userTask'] = JSON.stringify(todos);
+  };
+  this.getUserTask = function (){
+    var userTask = window.localStorage['userTask'];
+    if(userTask){
+      var tmp = JSON.parse(userTask);
+      todos = tmp;
+      console.log(todos);
+     // return todos;//error
+    }else{
+      console.log('none local task');
+    }
+  };
+})
+
 
