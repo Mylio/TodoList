@@ -23,31 +23,32 @@ var app = angular.module('starter', ['ionic'])
   });
 })
 
-app.service('Todo', function(){
+app.factory('Todo', function(){
   var todos = [
     {'title':'Borrow the book', 'done': false}
   ];
+  return{
   //to retrieve the list
-  this.list = function(){
+  list : function(){
     return todos;
-  };
-  this.add = function (todo){
+  },
+  add : function (todo){
     //splice(index, howManyItemsToDelete,optional-addNewItem);
     //splice will return the new array
     todos.splice(0,0,todo);
     window.localStorage['userTask'] = JSON.stringify(todos);
-  };
-  this.getUserTask = function (){
+  },
+  getUserTask : function (){
     var userTask = window.localStorage['userTask'];
     if(userTask){
-      var tmp = JSON.parse(userTask);
-      todos = tmp;
+      todos = JSON.parse(userTask);
       console.log(todos);
-     // return todos;//error
     }else{
       console.log('none local task');
     }
-  };
+  }
+  }
 })
+
 
 
