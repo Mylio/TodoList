@@ -24,12 +24,14 @@ var app = angular.module('starter', ['ionic'])
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
-    //set routing
+    //set routing 
+    //only one state can be active at one time
+    //state is an object, has properties: name / views / url(what the browser's URL will be / params / resolve)
     $stateProvider
-      .state('TuDu', {
+      .state('tudu', {
         url: '/tudu',
-        abstract: true,
-        templateUrl: 'view/home.html'  //root at index.html
+         abstract: true,
+         templateUrl: 'view/category.html'  //root at index.html
       })
 
       .state('category', {
@@ -43,7 +45,7 @@ var app = angular.module('starter', ['ionic'])
       })
 
       .state('task', {
-        url: '/:categoryName/:taskName',
+        url: '/category/:categoryName',
         views: {
           'task':{
             templateUrl: 'view/task.html',
@@ -53,34 +55,7 @@ var app = angular.module('starter', ['ionic'])
       });
       // if none of the above states are matched, use this as the fallback
       $urlRouterProvider.otherwise('/tudu');
-
   })
 
-app.factory('Todo', function () {
-  var todos = [
-    { 'title': 'Borrow the book', 'done': false }
-  ];
-  return {
-    //to retrieve the list
-    list: function () {
-      return todos;
-    },
-    add: function (todo) {
-      //splice(index, howManyItemsToDelete,optional-addNewItem);
-      //splice will return the new array
-      todos.splice(0, 0, todo);
-      window.localStorage['userTask'] = JSON.stringify(todos);
-    },
-    getUserTask: function () {
-      var userTask = window.localStorage['userTask'];
-      if (userTask) {
-        todos = JSON.parse(userTask);
-        console.log(todos);
-      } else {
-        console.log('none local task');
-      }
-    }
-  }
-})
 
 
