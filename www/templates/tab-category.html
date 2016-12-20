@@ -4,10 +4,11 @@
           <div class="item item-divider">
               {{todo.title}}
           </div>
+          <div class="percentBar" width={{barLong}}></div> <!--undone-->
         <ul class="list">
           <li class="item item-checkbox" ng-repeat="task in todo.tasks track by $index">
             <label class="checkbox">
-              <input type="checkbox" ng-model="task.done" ng-checked={{task.done}} ng-change="taskCheck()">
+              <input type="checkbox" ng-model="task.done" ng-checked={{task.done}} ng-change="taskCheck();taskCount(todo);">
             </label>{{task.name}}
           </li>
           <li>

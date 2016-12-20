@@ -45,11 +45,16 @@ angular.module('starter.controllers', [])
           var task = todo.newTask;//not $scope.todo.newTask
           if (task) {
             Todo.addTask(todo, {name: task, done: false});
+            todo.newTask = '';//clear newTask input
           }
         } ;
         $scope.taskCheck = function(){
           Todo.taskCheck();
         };
+        $scope.taskCount = function(todo){
+          Todo.taskCount(todo);
+        };
+        $scope.barLong = '';//undone
         // $scope.data = {
         //    taskToAdd: null,
         //   // todoToAdd: null,
@@ -106,6 +111,19 @@ angular.module('starter.controllers', [])
     },
     taskCheck: function(){
       window.localStorage['userTask'] = JSON.stringify(todos);
+    },
+    taskCount: function(todo){ //undone
+      console.log(todo.tasks.length);
+      var count = 0;
+      todo.tasks.forEach(function(e){
+        if(e.done){ count++;}
+      });
+      console.log(count);
+      var percent = count/todo.tasks.length;
+      console.log(percent);
+      document.getElementsByClassName('percentBar').style.width = percent*100+'%';
+      console.log(document.getElementsByClassName('percentBar').style.width);
+      // return percent*100+'%' ;
     }
   }
 })
