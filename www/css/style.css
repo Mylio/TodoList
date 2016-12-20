@@ -17,7 +17,3 @@ input[placeholder="New task"]{
     padding: 16px;
     height: 100%;
 }
-.percentBar{
-    background-color: cornflowerblue;
-    height: 10px;
-}

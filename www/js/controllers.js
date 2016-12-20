@@ -54,7 +54,15 @@ angular.module('starter.controllers', [])
         $scope.taskCount = function(todo){
           Todo.taskCount(todo);
         };
-        $scope.barLong = '';//undone
+
+        $scope.taskPercentage = function(todo) {
+          var count = todo.tasks.reduce(function(acc, t) {
+            return acc + (t.done ? 1 : 0)
+          }, 0);
+          return count/todo.tasks.length;
+        };
+        
+        //$scope.barLong = '';//undone
         // $scope.data = {
         //    taskToAdd: null,
         //   // todoToAdd: null,
@@ -121,10 +129,11 @@ angular.module('starter.controllers', [])
       console.log(count);
       var percent = count/todo.tasks.length;
       console.log(percent);
-      document.getElementsByClassName('percentBar').style.width = percent*100+'%';
-      console.log(document.getElementsByClassName('percentBar').style.width);
+      console.log(percent*100+'%');//string
+      //console.log(document.getElementsByClassName('percentBar').style.width);
       // return percent*100+'%' ;
-    }
+    },
+
   }
 })
 

@@ -4,7 +4,8 @@
           <div class="item item-divider">
               {{todo.title}}
           </div>
-          <div class="percentBar" width={{barLong}}></div> <!--undone-->
+          <div class="percentBar" 
+               ng-style="{height: '10px', backgroundColor: 'red', width: (taskPercentage(todo) * 100) + '%'}"></div> <!--undone-->
         <ul class="list">
           <li class="item item-checkbox" ng-repeat="task in todo.tasks track by $index">
             <label class="checkbox">
