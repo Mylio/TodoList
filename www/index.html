@@ -31,61 +31,22 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
   </head>
   <body ng-app="starter">
-
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Todo List</h1>
-      </ion-header-bar>
-      <ion-content ng-controller="todoController">
-        <ul class="list">
-          <label class="item item-input">
-            <input type="text" placeholder="New Todo" ng-model="todo.title">
-          </label>
-          <button class="button button-block button-positive" ng-click="addTodo(todo)">
-            Add
-          </button>
-          <!--must add track by $index, but why? -->
-          <li class="item item-checkbox" ng-repeat="todo in todos track by $index">
-            <label class="checkbox">
-              <input type="checkbox" ng-model="todo.done" ng-checked={{todo.done}}>
-            </label>{{todo.title}}
-          </li>
-        </ul>
-      </ion-content>
-    </ion-pane>
-    
-    <!--test undone-->
-    <!--<ion-nav-view></ion-nav-view>-->
-    <script id="new-task.html" type="text/ng-template">
-      <div class="modal">
-        <!-- Modal header bar -->
-        <ion-header-bar class="bar-secondary">
-          <h1 class="title">New Task</h1>
-          <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
-        </ion-header-bar>
-
-        <!-- Modal content area... -->
-        <ion-content>
-          <form ng-submit="createTask(task)">
-            <div class="list">
-              <label class="item item-input">
-                <input type="text" placeholder="What do you need to do?" ng-model="task.title">
-              </label>
-            </div>
-            <div class="padding">
-              <button type="submit" class="button button-block button-positive">Create Task</button>
-            </div>
-          </form>
-
-        </ion-content>
-
-      </div>
-
-    </script>
-
-
+    <!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>
