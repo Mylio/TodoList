@@ -25,4 +25,89 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+.controller('CateCtrl', function($scope){
+//undone
+}
+)
+.controller('todoController',['$scope','Todo', function($scope, Todo){
+        $scope.addTodo = function(todo){
+            todo.tasks = [];
+            //copy a to b
+            Todo.add(angular.copy(todo));
+            todo.title = '';
+            todo.newTask = '';
+        };
+        $scope.getUserTask = Todo.getUserTask(); //this must be above Todo.list();
+        $scope.todos = Todo.list();
+        $scope.addTask = function (todo) {
+          //var task = $scope.data.taskToAdd;
+          var task = todo.newTask;//not $scope.todo.newTask
+          if (task) {
+            Todo.addTask(todo, {name: task, done: false});
+          }
+        } ;
+        $scope.taskCheck = function(){
+          Todo.taskCheck();
+        };
+        // $scope.data = {
+        //    taskToAdd: null,
+        //   // todoToAdd: null,
+        // };
+    }
+])
+.factory('Todo', function () {
+  var todos = [
+    { 'title': 'Borrow things', 
+      'tasks': [
+          { name:'Borrow Books',
+            done: false},
+          {name:'Borrow Pencil',
+            done: false},
+          {name:'Borrow Hair',
+            done: false}
+      ]},
+      { 'title': 'Buy foods', 
+        'tasks': [
+          { name:'Buy Vegetables',
+            done: false},
+          {name:'Buy Mushroom',
+            done: false},
+          {name:'Buy Dinosaur',
+            done: false}
+      ]}
+      
+  ];
+  return {
+    //to retrieve the list
+    list: function () {
+      todos.forEach(function(e){e.newTask = '';});
+      return todos;
+    },
+    add: function (todo) {
+      //splice(index, howManyItemsToDelete,optional-addNewItem);
+      //splice will return the new array
+      todos.splice(0, 0, todo);
+      window.localStorage['userTask'] = JSON.stringify(todos);
+    },
+    getUserTask: function () {
+      var userTask = window.localStorage['userTask'];
+      if (userTask) {
+        todos = JSON.parse(userTask);
+        console.log(todos);
+      } else {
+        console.log('none local task');
+      }
+    },
+    addTask: function(todo,task){
+      console.log(todo);
+      todo.tasks.push(task);
+      window.localStorage['userTask'] = JSON.stringify(todos);
+    },
+    taskCheck: function(){
+      window.localStorage['userTask'] = JSON.stringify(todos);
+    }
+  }
+})
+
+

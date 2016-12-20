@@ -1,1 +1,19 @@
 /* Empty. Add your own CSS if you like */
+.has-header {
+    top: 70px;
+}
+.title.title-center.header-item{
+    height: 70px;
+    line-height: 70px;/*vertical align text*/
+}
+ion-header-bar.bar-stable.bar.bar-header, .header-item{
+    background-color: #5de5d5;
+    margin: 0px 0px;
+    color: #ffffff;
+    height: 70px;
+}
+input[placeholder="New task"]{
+    display: inline;
+    padding: 16px;
+    height: 100%;
+}
