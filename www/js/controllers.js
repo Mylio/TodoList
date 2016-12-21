@@ -64,6 +64,7 @@ angular.module('starter.controllers', [])
       }, 0);
       return count / todo.tasks.length;
     };
+    //popUp reference: https://ionicframework.com/docs/api/service/$ionicPopup/
     $scope.showPopup = function (todo) {
       $scope.data = {}
       var myPopup = $ionicPopup.show({
@@ -71,18 +72,20 @@ angular.module('starter.controllers', [])
         title: 'Choose another color',
         subTitle: 'Please use normal things',
         scope: $scope,
-        buttons: [
+        buttons: [ // buttons to place in the pop up footer
           { text: 'Cancel' },
           {
             text: '<b>Save</b>',
             type: 'button-positive',
-            onTap:  function(){
-              console.log($scope.data.color);
+            onTap:  function(e){
+              //prevent popup from closing when Tapped
+              e.preveantDefault();
             return $scope.data.color;
           }    
           }
         ],
       });
+      //then(), take to para. , callback functions for success and failure(optional)
       myPopup.then(function (res) {
       //  console.log('Tapped!', res);
         Todo.todoColor(todo,res);
