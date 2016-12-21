@@ -1,45 +1,46 @@
 <ion-view view-title="Tudu">
   <ion-content ng-controller="todoController">
-      <div class="card" ng-repeat="todo in todos track by $index">
-          <div class="item item-divider">
-              {{todo.title}}
-          </div>
-          <div class="percentBar" 
-               ng-style="{height: '10px', backgroundColor: 'red', width: (taskPercentage(todo) * 100) + '%'}"></div> <!--undone-->
-        <ul class="list">
-          <li class="item item-checkbox" ng-repeat="task in todo.tasks track by $index">
-            <label class="checkbox">
-              <input type="checkbox" ng-model="task.done" ng-checked={{task.done}} ng-change="taskCheck();taskCount(todo);">
+    <div class="card" ng-repeat="todo in todos track by $index">
+      <div class="item item-divider" ng-style="{backgroundColor:todo.color}">
+        {{todo.title}}
+         <button class="colorPick button button-dark" ng-click="showPopup(todo)">   
+        </button>
+      </div>
+      <div class="percentBar " ng-style="{width: (taskPercentage(todo))*100 + '%'}" ></div>
+      <ul class="list">
+        <li class="item item-checkbox" ng-repeat="task in todo.tasks track by $index">
+          <label class="checkbox">
+              <input type="checkbox" ng-model="task.done" ng-checked={{task.done}} ng-change="taskCheck();">
             </label>{{task.name}}
-          </li>
-          <li>
-            <button class="button" ng-click="addTask(todo)">
+        </li>
+        <li>
+          <button class="button" ng-click="addTask(todo)">
             <ion-icon class="ion-plus-round"></ion-icon>
             </button>
-            <input type="text" placeholder="New task" ng-model="todo.newTask"></li>
-        </ul>
-        <!--<input type="text" placeholder="New task" ng-model="data.taskToAdd">-->
-         
-        </div>
-        <!-- Add new todo -->
-        <div class="card">
-        <div class="item item-divider">
-              {{todo.title || 'Your New todo...'}}
-        </div>
-        <ul class="list">
-          <label class="item item-input">
+          <input type="text" placeholder="New task" ng-model="todo.newTask"></li>
+      </ul>
+      <!--<input type="text" placeholder="New task" ng-model="data.taskToAdd">-->
+
+    </div>
+    <!-- Add new todo -->
+    <div class="card">
+      <div class="item item-divider">
+        {{todo.title || 'Your New todo...'}}
+      </div>
+      <ul class="list">
+        <label class="item item-input">
             <input type="text" placeholder="New Todo" ng-model="todo.title">
           </label>
-          <button class="button button-block button-positive" ng-click="addTodo(todo)">
+        <button class="button button-block button-positive" ng-click="addTodo(todo)">
             Add
           </button>
-          <!--must add track by $index, but why? -->
-          <li class="item item-checkbox" ng-repeat="task in tasks">
-            <label class="checkbox">
+        <!--must add track by $index, but why? -->
+        <li class="item item-checkbox" ng-repeat="task in tasks">
+          <label class="checkbox">
               <input type="checkbox" ng-model="task.done" ng-checked={{task.done}}>
             </label>{{task.name}}
-          </li>
-        </ul>
-        </div>
-      </ion-content>
+        </li>
+      </ul>
+    </div>
+  </ion-content>
 </ion-view>

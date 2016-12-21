@@ -17,3 +17,14 @@ input[placeholder="New task"]{
     padding: 16px;
     height: 100%;
 }
+.percentBar{
+    height: 10px;
+    background-color:#e6e6e6; 
+}
+.colorPick{
+    min-width: 10px;
+    width: 10px;
+    height: 10px;
+    min-height: 10px;
+    float: right;
+}
