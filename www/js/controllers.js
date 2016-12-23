@@ -18,6 +18,7 @@ angular.module('starter.controllers', [])
   })
 
   .controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
+    //$startsParams = chatId
     $scope.chat = Chats.get($stateParams.chatId);
   })
 
@@ -27,7 +28,6 @@ angular.module('starter.controllers', [])
     };
   })
   .controller('CateCtrl', function ($scope) {
-    //undone
   }
   )
   .controller('todoController', function ($scope, Todo, $ionicPopup, $timeout) {
@@ -79,7 +79,7 @@ angular.module('starter.controllers', [])
             type: 'button-positive',
             onTap:  function(e){
               //prevent popup from closing when Tapped
-              e.preveantDefault();
+             // e.preventDefault();
             return $scope.data.color;
           }    
           }

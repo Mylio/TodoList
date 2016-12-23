@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/chats/:chatId', //chatId will be passed to ChatDetailCtrl
       views: {
         'tab-chats': {
           templateUrl: 'templates/chat-detail.html',
@@ -78,7 +78,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-
+    .state('tab.new',{
+      url : '/newTab',
+        views: {
+          'tab-newTab':{ //name has to be the same in tabs.html, <ion-nav-view name="tab-newTab">
+          templateUrl: 'templates/new.html',
+          }
+        }
+      }
+    )
   .state('tab.account', {
     url: '/account',
     views: {

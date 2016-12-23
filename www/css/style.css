@@ -12,10 +12,9 @@ ion-header-bar.bar-stable.bar.bar-header, .header-item{
     color: #ffffff;
     height: 70px;
 }
-input[placeholder="New task"]{
+input[placeholder="New task"]{ /*inline element can't set height, weight, margin...*/
     display: inline;
     padding: 16px;
-    height: 100%;
 }
 .percentBar{
     height: 10px;
